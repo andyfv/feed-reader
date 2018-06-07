@@ -33,8 +33,7 @@ $(function () {
          * and that the URL is not empty.
          */
         it('URLs are defined and not empty', function () {
-            for (let key in allFeeds) {
-                let feed = allFeeds[key];
+            for (let feed of allFeeds) {
                 expect(feed.url).toBeDefined();
                 expect(feed.url.length).not.toEqual(0);
             }
@@ -57,8 +56,7 @@ $(function () {
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function () {
-        let menu = $('.slide-menu'),
-            menuIcon = $('.menu-icon-link');
+        let menuIcon = $('.menu-icon-link');
 
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -75,11 +73,11 @@ $(function () {
          * clicked and does it hide when clicked again.
          */
         it('is be visible when the menu icon is clicked', function () {
-            $('body').removeClass('menu-hidden');
+            //$('body').removeClass('menu-hidden');
             menuIcon.trigger('click');
-            expect(menu.hasClass('menu-hidden')).toBe(false);
+            expect($('body').hasClass('menu-hidden')).toBe(false);
             menuIcon.trigger('click');
-            expect(menu.hasClass('menu-hidden')).toBe(false);
+            expect($('body').hasClass('menu-hidden')).toBe(true);
         });
     });
 
@@ -97,7 +95,7 @@ $(function () {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
         it('should have at least one entry in the feed container', function (done) {
-            expect($('.entry-link').length).toBeGreaterThan(0);
+            expect($('.feed .entry').length).toBeGreaterThan(0);
             done();
         })
     });
